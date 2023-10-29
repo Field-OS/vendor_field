@@ -1,2 +1,2 @@
-# Include ProtonPlus versions
-include $(TOPDIR)vendor/proton/build/core/main_version.mk
+# Include FieldOS versions
+include $(TOPDIR)vendor/field/build/core/main_version.mk

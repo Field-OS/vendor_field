@@ -4,21 +4,21 @@ ADDITIONAL_SYSTEM_PROPERTIES += \
     ro.build.fingerprint=$(BUILD_FINGERPRINT)
 endif
 
-# ProtonPlus System Version
+# FieldOS System Version
 ADDITIONAL_SYSTEM_PROPERTIES += \
-    ro.proton.version=$(PROTON_VERSION) \
-    ro.proton.releasetype=$(RELEASE_TYPE) \
-    ro.proton.build.version=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR) \
-    ro.modversion=$(PROTON_VERSION) 
+    ro.field.version=$(FIELD_VERSION) \
+    ro.field.releasetype=$(RELEASE_TYPE) \
+    ro.field.build.version=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR) \
+    ro.modversion=$(FIELD_VERSION) 
 
 ifeq ($(WITH_GAPPS),true)
 ADDITIONAL_SYSTEM_PROPERTIES += \
-    ro.proton.ziptype=gapps
+    ro.field.ziptype=gapps
 else
 ADDITIONAL_SYSTEM_PROPERTIES += \
-    ro.proton.ziptype=vanilla
+    ro.field.ziptype=vanilla
 endif
 
-# ProtonPlus Platform Display Version
+# FieldOS Platform Display Version
 ADDITIONAL_SYSTEM_PROPERTIES += \
-    ro.proton.display.version=$(PROTON_VERSION)
+    ro.field.display.version=$(FIELD_VERSION)

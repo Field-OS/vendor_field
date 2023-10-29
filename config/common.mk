@@ -2,7 +2,7 @@
 $(call inherit-product-if-exists, vendor/extra/product.mk)
 
 # telephony
-$(call inherit-product, vendor/proton/config/telephony.mk)
+$(call inherit-product, vendor/field/config/telephony.mk)
 
 ifeq ($(PRODUCT_GMS_CLIENTID_BASE),)
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
@@ -28,16 +28,16 @@ PRODUCT_PRODUCT_PROPERTIES += \
 
 # Google features
 PRODUCT_COPY_FILES += \
-    vendor/proton/prebuilt/common/etc/sysconfig/google_build.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/google_build.xml \
-    vendor/proton/prebuilt/common/etc/sysconfig/lily_experience.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/lily_experience.xml \
-    vendor/proton/prebuilt/common/etc/sysconfig/nexus.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/nexus.xml \
-    vendor/proton/prebuilt/common/etc/sysconfig/pixel_2016_exclusive.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_2016_exclusive.xml \
-    vendor/proton/prebuilt/common/etc/sysconfig/pixel_experience_2017.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_experience_2017.xml \
-    vendor/proton/prebuilt/common/etc/sysconfig/pixel_experience_2018.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_experience_2018.xml \
-    vendor/proton/prebuilt/common/etc/sysconfig/pixel_experience_2019.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_experience_2019.xml \
-    vendor/proton/prebuilt/common/etc/sysconfig/pixel_experience_2019_midyear.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_experience_2019_midyear.xml \
-    vendor/proton/prebuilt/common/etc/sysconfig/pixel_experience_2020.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_experience_2020.xml \
-    vendor/proton/prebuilt/common/etc/sysconfig/pixel_experience_2020_midyear.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_experience_2020_midyear.xml
+    vendor/field/prebuilt/common/etc/sysconfig/google_build.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/google_build.xml \
+    vendor/field/prebuilt/common/etc/sysconfig/lily_experience.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/lily_experience.xml \
+    vendor/field/prebuilt/common/etc/sysconfig/nexus.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/nexus.xml \
+    vendor/field/prebuilt/common/etc/sysconfig/pixel_2016_exclusive.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_2016_exclusive.xml \
+    vendor/field/prebuilt/common/etc/sysconfig/pixel_experience_2017.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_experience_2017.xml \
+    vendor/field/prebuilt/common/etc/sysconfig/pixel_experience_2018.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_experience_2018.xml \
+    vendor/field/prebuilt/common/etc/sysconfig/pixel_experience_2019.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_experience_2019.xml \
+    vendor/field/prebuilt/common/etc/sysconfig/pixel_experience_2019_midyear.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_experience_2019_midyear.xml \
+    vendor/field/prebuilt/common/etc/sysconfig/pixel_experience_2020.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_experience_2020.xml \
+    vendor/field/prebuilt/common/etc/sysconfig/pixel_experience_2020_midyear.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_experience_2020_midyear.xml
 
 ifeq ($(TARGET_BUILD_VARIANT),eng)
 # Disable ADB authentication
@@ -66,9 +66,9 @@ endif
 PRODUCT_SYSTEM_EXT_PROPERTIES += \
     ro.launcher.blur.appLaunch=0
 
-# ProtonPlus-specific init rc file
+# FieldOS-specific init rc file
 PRODUCT_COPY_FILES += \
-    vendor/proton/prebuilt/common/etc/init/init.proton-system_ext.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.proton-system_ext.rc
+    vendor/field/prebuilt/common/etc/init/init.field-system_ext.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.field-system_ext.rc
 
 # Enable gestural navigation overlay to match default navigation mode
 PRODUCT_PRODUCT_PROPERTIES += \
@@ -76,7 +76,7 @@ PRODUCT_PRODUCT_PROPERTIES += \
 
 # priv-app permissions
 PRODUCT_COPY_FILES += \
-    vendor/proton/prebuilt/common/etc/permissions/priv-app_system.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/priv-app_system.xml
+    vendor/field/prebuilt/common/etc/permissions/priv-app_system.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/priv-app_system.xml
 
 # Enforce privapp-permissions whitelist
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
@@ -93,16 +93,16 @@ PRODUCT_MINIMIZE_JAVA_DEBUG_INFO := true
 # Disable vendor restrictions
 PRODUCT_RESTRICT_VENDOR_FILES := false
 
-# protonplus packages
+# FieldOS packages
 PRODUCT_PACKAGES += \
     RepainterServicePriv
 
-ifeq ($(PROTON_BUILD_VARIANT),OFFICIAL)
+ifeq ($(FIELD_BUILD_VARIANT),OFFICIAL)
 PRODUCT_PACKAGES += \
     Updater
 
 PRODUCT_COPY_FILES += \
-    vendor/proton/prebuilt/common/etc/init/init.proton-updater.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.proton-updater.rc
+    vendor/field/prebuilt/common/etc/init/init.field-updater.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.field-updater.rc
 endif
 
 # Charger
@@ -117,7 +117,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PRODUCT_PROPERTIES += \
     persist.sys.disable_rescue=true
 
-# Extra tools in ProtonPlus
+# Extra tools in FieldOS
 PRODUCT_PACKAGES += \
     7z \
     bash \
@@ -152,7 +152,7 @@ PRODUCT_PACKAGES += \
     start-ssh
 
 PRODUCT_COPY_FILES += \
-    vendor/proton/prebuilt/common/etc/init/init.openssh.rc:$(TARGET_COPY_OUT_PRODUCT)/etc/init/init.openssh.rc
+    vendor/field/prebuilt/common/etc/init/init.openssh.rc:$(TARGET_COPY_OUT_PRODUCT)/etc/init/init.openssh.rc
 
 # rsync
 PRODUCT_PACKAGES += \
@@ -188,10 +188,10 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     dalvik.vm.systemuicompilerfilter=speed
 
-PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/proton/overlay/no-rro
+PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/field/overlay/no-rro
 PRODUCT_PACKAGE_OVERLAYS += \
-    vendor/proton/overlay/common \
-    vendor/proton/overlay/no-rro
+    vendor/field/overlay/common \
+    vendor/field/overlay/no-rro
 
 # Enable support of one-handed mode
 PRODUCT_PRODUCT_PROPERTIES += \
@@ -211,7 +211,7 @@ PRODUCT_PACKAGES += \
     ThemePicker
     
 # BootAnimation
-include vendor/proton/config/bootanimation.mk
+include vendor/field/config/bootanimation.mk
 
 # Face Unlock
 TARGET_FACE_UNLOCK_SUPPORTED ?= $(TARGET_SUPPORTS_64_BIT_APPS)
@@ -245,10 +245,10 @@ endif
 
 ifneq ($(WITH_GAPPS),true)
 PRODUCT_PACKAGE_OVERLAYS += \
-    vendor/proton/overlay/aperture
+    vendor/field/overlay/aperture
 endif
 
 # Fonts
-include vendor/proton/config/fonts.mk
+include vendor/field/config/fonts.mk
 
-include vendor/proton/config/version.mk
+include vendor/field/config/version.mk

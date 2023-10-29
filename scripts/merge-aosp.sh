@@ -8,8 +8,8 @@ grn=$'\e[1;32m'
 blu=$'\e[1;34m'
 end=$'\e[0m'
 
-REMOTE="ProtonPlus"
-BRANCH="tm"
+REMOTE="FieldOS"
+BRANCH="13.0"
 
 BLACKLIST="manifest"
 
